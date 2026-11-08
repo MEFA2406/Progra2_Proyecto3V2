@@ -39,4 +39,18 @@ add_executable(Proyecto3 main.cpp
         EstrategiaAleatoria.cpp
         EstrategiaAleatoria.h
         Mundo.cpp
-        Mundo.h)
+        Mundo.h
+        Juego.cpp
+        Juego.h
+        Fabrica.cpp
+        Fabrica.h
+        EstrategiaPerseguir.cpp
+        EstrategiaPerseguir.h
+        MovimientoAutomatico.cpp
+        MovimientoAutomatico.h
+        IObservador.h
+        ConsoleView.cpp
+        ConsoleView.h
+        Lista.h
+        Nodo.h
+        Iterator.h)

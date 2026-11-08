@@ -16,7 +16,7 @@ TipoEquipo Armadura::tipoEquipo() const {
     return EQ_ARMADURA;
 }
 
-const char * Armadura::nombre() const {
+const std::string Armadura::nombre() const {
     return "Armadura (+10)";
 }
 

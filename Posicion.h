@@ -18,7 +18,7 @@ public:
     int getColumna() const;
 
     bool operator==(const Posicion &p) const;
-    int distanciaA(Posicion& otra) const;
+    int distanciaA(const Posicion& otra) const;
     Posicion vecina(Direccion direccion) const;
 
 

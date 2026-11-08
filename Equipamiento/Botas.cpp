@@ -16,7 +16,7 @@ TipoEquipo Botas::tipoEquipo() const {
     return EQ_BOTAS;
 }
 
-const char * Botas::nombre() const {
+const std::string Botas::nombre() const {
     return "Botas (+3)";
 }
 

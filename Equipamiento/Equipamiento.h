@@ -5,6 +5,7 @@
 #ifndef PROYECTO3_EQUIPAMIENTO_H
 #define PROYECTO3_EQUIPAMIENTO_H
 
+#include <string>
 #include "../Entidad.h"
 #include "IProteccion.h"
 
@@ -17,7 +18,7 @@ public:
     TipoEntidad tipo() const override;
 
     virtual TipoEquipo tipoEquipo() const =0;
-    virtual const char* nombre() const =0;
+    virtual const std::string nombre() const =0;
     virtual IProteccion* wrap(IProteccion* actual) const =0;
 };
 

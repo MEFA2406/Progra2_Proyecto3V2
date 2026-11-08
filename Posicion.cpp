@@ -19,7 +19,7 @@ bool Posicion::operator==(const Posicion &p) const {
     return fila == p.fila && columna == p.columna;
 }
 
-int Posicion::distanciaA(Posicion & otra) const {
+int Posicion::distanciaA(const Posicion & otra) const {
     int df = fila - otra.fila; //df = distanciaFila
     int dc = columna - otra.columna;
     if (df < 0) df = -df;

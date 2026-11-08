@@ -12,7 +12,7 @@ public:
     Armadura(const Posicion& p);
     char simbolo() const override;
     TipoEquipo tipoEquipo() const override;
-    const char* nombre() const override;
+    const std::string nombre() const override;
     IProteccion* wrap(IProteccion* actual) const override;
 
 

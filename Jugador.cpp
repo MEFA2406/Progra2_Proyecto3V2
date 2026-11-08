@@ -19,7 +19,7 @@ void Jugador::reiniciar() {
     proteccion = new ProteccionBase();
 }
 
-int Jugador::getVida() {
+int Jugador::getVida() const{
     return vida;
 }
 
@@ -53,8 +53,8 @@ int Jugador::recibirAtaque(int ataque) {
     return dano;
 }
 
-bool Jugador::equipar(const Equipamiento *equipo) {
-    if (proteccion->contiene(equipo->tipoEquipo())) return false;
-    proteccion = equipo->wrap(proteccion);
+bool Jugador::equipar(const Equipamiento& equipo) {
+    if (proteccion->contiene(equipo.tipoEquipo())) return false;
+    proteccion = equipo.wrap(proteccion);
     return true;
 }

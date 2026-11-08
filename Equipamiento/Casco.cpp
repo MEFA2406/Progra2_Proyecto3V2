@@ -18,7 +18,7 @@ TipoEquipo Casco::tipoEquipo() const {
     return EQ_CASCO;
 }
 
-const char * Casco::nombre() const {
+const std::string Casco::nombre() const {
     return "Casco (+5)";
 }
 

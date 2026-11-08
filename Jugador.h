@@ -21,14 +21,14 @@ public:
 
     void reiniciar();
 
-    int getVida();
+    int getVida() const;
     void setVida(int nuevaVida);
     int getProteccion() const;
     bool tiene(TipoEquipo tipo) const;
 
     void curar(int cantidad);
     int recibirAtaque(int ataque);
-    bool equipar(const Equipamiento* equipo);
+    bool equipar(const Equipamiento& equipo);
 
 };
 
