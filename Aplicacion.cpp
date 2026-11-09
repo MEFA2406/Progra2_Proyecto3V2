@@ -6,7 +6,7 @@
 #include <ctime>
 
 Aplicacion::Aplicacion() {
-    //srand(time(NULL));
+    srand(time(NULL));
     juego.agregarObservador(&vista);
 }
 

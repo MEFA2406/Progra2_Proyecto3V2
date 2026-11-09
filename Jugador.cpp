@@ -46,6 +46,9 @@ int Jugador::recibirAtaque(int ataque) {
     }
     int dano = ataque -p;
     vida -= dano;
+    if (vida < 0) {
+        vida = 0;
+    }
     if (p > 0) {
         delete proteccion;
         proteccion = new ProteccionBase();
