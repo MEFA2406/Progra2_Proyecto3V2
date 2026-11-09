@@ -7,10 +7,10 @@
 
 #include <mutex>
 #include <string>
-
 #include "Entidad.h"
 #include "Jugador.h"
 #include "Posicion.h"
+#include "Lista.h"
 
 class Mundo {
 public:
@@ -43,6 +43,8 @@ public:
     void agregarEvento(const std::string& texto);
     void limpiarEventos();
     const std::string& getEventos() const;
+
+    void recolectar(TipoEntidad tipo,Lista<Entidad*>& destino) const;
 
 private:
     Entidad* celdas[TAM][TAM];

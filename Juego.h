@@ -9,6 +9,7 @@
 #include "Jugador.h"
 #include "Lista.h"
 #include "Mundo.h"
+#include "Hilos/ControlHilos.h"
 
 enum EstadoJuego {JUGANDO,GANADO,PERDIDO};
 
@@ -46,6 +47,8 @@ private:
     Mundo mundo;
     Jugador jugador;
     Lista<IObservador*> observadores;
+    ControlHilos* hilos[NUM_HILOS];
+    ControlTurnos sync;
 
     int nivel;
     int movNivel;

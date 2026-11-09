@@ -129,3 +129,13 @@ void Mundo::limpiarEventos() {
 const std::string & Mundo::getEventos() const {
     return eventos;
 }
+
+void Mundo::recolectar(TipoEntidad tipo, Lista<Entidad *> &destino) const {
+    for (int i=0;i<TAM;i++) {
+        for (int j=0;j<TAM;j++) {
+            if (celdas[i][j] != nullptr && celdas[i][j]->tipo() == tipo) {
+                destino.agregar(celdas[i][j]);
+            }
+        }
+    }
+}

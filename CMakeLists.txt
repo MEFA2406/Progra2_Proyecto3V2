@@ -53,4 +53,18 @@ add_executable(Proyecto3 main.cpp
         ConsoleView.h
         Lista.h
         Nodo.h
-        Iterator.h)
+        Iterator.h
+        ControlTurnos.cpp
+        ControlTurnos.h
+        Hilos/ControlHilos.cpp
+        Hilos/ControlHilos.h
+        Hilos/ControlComidas.cpp
+        Hilos/ControlComidas.h
+        Hilos/ControlCarnivoros.cpp
+        Hilos/ControlCarnivoros.h
+        Hilos/ControlEquipamiento.cpp
+        Hilos/ControlEquipamiento.h
+        Hilos/ControlPlantas.cpp
+        Hilos/ControlPlantas.h
+        Aplicacion.cpp
+        Aplicacion.h)

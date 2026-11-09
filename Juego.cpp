@@ -8,15 +8,29 @@
 #include "Carnivoro.h"
 #include "Fabrica.h"
 #include "Equipamiento/Equipamiento.h"
+#include "MovimientoAutomatico.h"
+#include "Hilos/ControlCarnivoros.h"
+#include "Hilos/ControlComidas.h"
+#include "Hilos/ControlEquipamiento.h"
+#include "Hilos/ControlPlantas.h"
+
 
 Juego::Juego() : nivel(1), movNivel(0), movTotal(0), estado(JUGANDO) {
     mundo.setJugador(&jugador);
-    //hilos
+    hilos[0] = new ControlComidas(mundo,sync);
+    hilos[1] = new ControlCarnivoros(mundo,sync);
+    hilos[3] = new ControlEquipamiento(mundo,sync);
+    hilos[4] = new ControlPlantas(mundo,sync);
+    for (int i=0; i<NUM_HILOS; i++) {
+        hilos[i]->iniciar();
+    }
 }
 
 Juego::~Juego() {
+    sync.detenerTodo();
     for (int i=0;i<NUM_HILOS;i++) {
-
+        hilos[i]->esperar();
+        delete hilos[i];
     }
 }
 
@@ -39,11 +53,17 @@ void Juego::nuevaPartida() {
     estado = JUGANDO;
     mundo.limpiarEventos();
     generarNivel();
-    //notify;
+    notificarObservador();
 }
 
 void Juego::restaurar(int nuevoNivel, int movimientosNivel, int movimientosTotal) {
-
+    jugador.reiniciar();
+    nivel = nuevoNivel;
+    movNivel = movimientosNivel;
+    movTotal = movimientosTotal;
+    estado = JUGANDO;
+    mundo.limpiarEventos();
+    mundo.limpiar();
 }
 
 bool Juego::hayMovimientoValido() const {
@@ -65,7 +85,7 @@ bool Juego::mover(char tecla) {
     if (teclaDireccion(tecla, d)) {
         mundo.limpiarEventos();
         mundo.agregarEvento("Tecla invalida! usa W / A / S / D ");
-        //NOTIFY
+        notificarObservador();
         return false;
     }
     return moverDireccion(d);
@@ -90,7 +110,7 @@ void Juego::ejecutarAutomatico(int segundos) {
             pasarTurno();
         }
         if (estado == JUGANDO && nivel == nivelInicial) {
-            //sleep thread
+            this_thread::sleep_for(std::chrono::seconds(segundos));
         }
     }
 }
@@ -222,7 +242,9 @@ void Juego::avanzarTurno() {
         terminarPerdido();
         return;
     }
-    //Hilos
+    sync.iniciarTurno(NUM_HILOS);
+    sync.esperarFin();
+
     if (jugador.getVida()<=0) {
         terminarPerdido();
         return;
@@ -238,10 +260,10 @@ void Juego::avanzarTurno() {
             mundo.agregarEvento("NIVEL SUPERADO! Nuevo mapa, enemigos mas fuertes");
         }
     }
-    //notify
+    notificarObservador();
 }
 
 void Juego::terminarPerdido() {
     estado = PERDIDO;
-    //notify
+    notificarObservador();
 }

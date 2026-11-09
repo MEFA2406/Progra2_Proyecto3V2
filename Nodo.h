@@ -14,11 +14,6 @@ public:
     explicit Nodo(const T& valor) : dato(valor), siguiente(nullptr) {}
     Nodo(const Nodo&) = delete;
     Nodo& operator=(const Nodo&) = delete;
-    ~Nodo(){
-        if(std::is_pointer_v<T>() ) {
-            delete dato;
-        }
-    }
     T& getDato() { return dato; }
     const T& getDato() const { return dato; }
     Nodo<T>* getSiguiente() { return siguiente; }
