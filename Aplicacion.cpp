@@ -15,8 +15,10 @@ void Aplicacion::modoManual() {
         vista.mostrarMensaje("La partida termino. Inicia una nueva (opcion 1).");
         return;
     }
+    juego.notificarObservador();
+    int nivelInicial = juego.getNivel();
     char tecla;
-    while (juego.getEstado() == JUGANDO) {
+    while (juego.getEstado() == JUGANDO && nivelInicial == juego.getNivel() ) {
         if (!juego.hayMovimientoValido()) {
             juego.pasarTurno();
             continue;
@@ -31,6 +33,7 @@ void Aplicacion::modoAutomatico() {
         vista.mostrarMensaje("La partida termino. Inicia una nueva (opcion 1).");
         return;
     }
+    juego.notificarObservador();
     int segundos = 0;
     while (segundos < 1 || segundos > 3) {
         if (!vista.pedirSegundos(segundos)) return;

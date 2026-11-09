@@ -254,10 +254,12 @@ void Juego::avanzarTurno() {
             estado = GANADO;
         }
         else {
+            mundo.agregarEvento("NIVEL SUPERADO! Nuevo mapa, enemigos mas fuertes");
+            notificarObservador();
             nivel++;
             movNivel =0;
+            mundo.limpiarEventos();
             generarNivel();
-            mundo.agregarEvento("NIVEL SUPERADO! Nuevo mapa, enemigos mas fuertes");
         }
     }
     notificarObservador();
