@@ -16,7 +16,7 @@ int Carnivoro::getAtaque() const {
 }
 
 char Carnivoro::simbolo() const {
-    return 'C';
+    return 'E';
 }
 
 TipoEntidad Carnivoro::tipo() const {

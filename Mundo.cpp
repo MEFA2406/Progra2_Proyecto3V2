@@ -118,8 +118,8 @@ void Mundo::limpiar() {
 void Mundo::agregarEvento(const std::string &texto) {
     if (!eventos.empty()) {
         eventos += " | ";
-        eventos += texto;
     }
+    eventos += texto;
 }
 
 void Mundo::limpiarEventos() {

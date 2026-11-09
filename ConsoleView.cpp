@@ -28,9 +28,9 @@ void ConsoleView::actualizar(const Juego &juego) {
                 << Juego::NIVELES * Juego::Mov_por_nivel << "\n";
     std::cout   << "Vida: "<<jugador.getVida() << "  Proteccion: "<<jugador.getProteccion()
                 << "  ["
-                << (jugador.tiene(EQ_CASCO) ? "Casco: ": "")
-                << (jugador.tiene(EQ_BOTAS) ? "Botas: " : "")
-                << (jugador.tiene(EQ_ARMADURA) ? "Armadura: " : "") <<"]\n\n";
+                << (jugador.tiene(EQ_CASCO) ? "Casco ": "")
+                << (jugador.tiene(EQ_BOTAS) ? "Botas " : "")
+                << (jugador.tiene(EQ_ARMADURA) ? "Armadura " : "") <<"]\n\n";
 
     for (int i=0;i < Mundo::TAM; i++) {
         std::cout<<"  ";
@@ -47,7 +47,7 @@ void ConsoleView::actualizar(const Juego &juego) {
         std::cout<<"\n";
     }
     std::cout<<"\n J=JUGADOR C=COMIDA E=CARNIVORO P=PLANTA H=CASCO B=BOTAS A=ARMADURA\n";
-    if (mundo.getEventos().empty()) {
+    if (!mundo.getEventos().empty()) {
         std::cout<< ">> " << mundo.getEventos() << "\n";
     }
     if (juego.getEstado() == GANADO) {

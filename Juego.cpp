@@ -82,7 +82,7 @@ bool Juego::mover(char tecla) {
         return false;
     }
     Direccion d= ABAJO;
-    if (teclaDireccion(tecla, d)) {
+    if (!teclaDireccion(tecla, d)) {
         mundo.limpiarEventos();
         mundo.agregarEvento("Tecla invalida! usa W / A / S / D ");
         notificarObservador();
@@ -104,7 +104,7 @@ void Juego::ejecutarAutomatico(int segundos) {
     int nivelInicial = nivel;
     while (estado == JUGANDO && nivel == nivelInicial) {
         Direccion d = ABAJO;
-        if (hayMovimientoValido()) {
+        if (hayMovimientoValido() && MovimientoAutomatico::decidir(mundo,jugador,d)) {
             moverDireccion(d);
         }else {
             pasarTurno();
@@ -224,7 +224,7 @@ bool Juego::moverDireccion(Direccion d) {
     Entidad* e = mundo.getEntidad(destino);
     if (!mundo.dentroLimites(destino) || (e && e->tipo() == PLANTA)) {
         mundo.agregarEvento("Movimiento invalido: posicion bloquada");
-        //
+        notificarObservador();
         return false;
     }
     {
