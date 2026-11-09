@@ -19,8 +19,8 @@ Juego::Juego() : nivel(1), movNivel(0), movTotal(0), estado(JUGANDO) {
     mundo.setJugador(&jugador);
     hilos[0] = new ControlComidas(mundo,sync);
     hilos[1] = new ControlCarnivoros(mundo,sync);
-    hilos[3] = new ControlEquipamiento(mundo,sync);
-    hilos[4] = new ControlPlantas(mundo,sync);
+    hilos[2] = new ControlEquipamiento(mundo,sync);
+    hilos[3] = new ControlPlantas(mundo,sync);
     for (int i=0; i<NUM_HILOS; i++) {
         hilos[i]->iniciar();
     }
