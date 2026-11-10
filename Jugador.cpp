@@ -3,10 +3,11 @@
 //
 
 #include "Jugador.h"
+#include <algorithm>
 #include "Equipamiento/Equipamiento.h"
 #include "Equipamiento/ProteccionBase.h"
 
-Jugador::Jugador() : vida(20), proteccion(new ProteccionBase()) {
+Jugador::Jugador() : vida(20), proteccion(new ProteccionBase()), desgaste(0) {
 }
 
 Jugador::~Jugador() {
@@ -17,6 +18,7 @@ void Jugador::reiniciar() {
     vida =20;
     delete proteccion;
     proteccion = new ProteccionBase();
+    desgaste = 0;
 }
 
 int Jugador::getVida() const{
@@ -28,7 +30,7 @@ void Jugador::setVida(int nuevaVida) {
 }
 
 int Jugador::getProteccion() const {
-    return proteccion->valor();
+    return std::max(0, proteccion->valor() - desgaste);
 }
 
 bool Jugador::tiene(TipoEquipo tipo) const {
@@ -40,15 +42,16 @@ void Jugador::curar(int cantidad) {
 }
 
 int Jugador::recibirAtaque(int ataque) {
-    int p = proteccion->valor();
-    if (p >= ataque) {
-        return 0;
-    }
-    int dano = ataque -p;
-    vida -= dano;
-    if (p > 0) {
+    int p = getProteccion();
+    int absorbido = std::min(p, ataque);
+    int dano = ataque - absorbido;
+    desgaste += absorbido;
+    vida = std::max(0, vida - dano);
+
+    if (getProteccion() == 0 && proteccion->valor() > 0) {
         delete proteccion;
         proteccion = new ProteccionBase();
+        desgaste = 0;
     }
     return dano;
 }

@@ -13,6 +13,7 @@ class Jugador {
 private:
     int vida;
     IProteccion* proteccion;
+    int desgaste;   // puntos de proteccion ya gastados por ataques
 public:
     Jugador();
     ~Jugador();

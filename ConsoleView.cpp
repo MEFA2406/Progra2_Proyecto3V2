@@ -11,8 +11,8 @@ void ConsoleView::mostrarMenu() const {
                     "1. Nueva partida\n"
                     "2. Jugar manual (W/A/S/D) Q para volver\n"
                     "3. Ejecutar nivel actual automaticamente\n"
-                    "4. Guardar partida\n"
-                    "5. Cargar partida\n"
+                //    "4. Guardar partida\n"
+                //    "5. Cargar partida\n"
                     "0. Salir\n" << std::flush;
 }
 
